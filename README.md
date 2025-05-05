@@ -17,4 +17,31 @@
 
 ## mmwave_to_mavlink.py
 
-- (explain the codes and functions used)
+### mavlink_loop()
+
+- shows system is alive by sending heartbeat messages
+- responds to specific incoming messages from flight controller with dedicated callbacks
+- runs indefinitely in a background thread to process MAVLink traffic
+
+### send_obstacle_distance_3D_message()
+
+- sends updated ```OBSTACLE_DISTANCE_3D``` message to the flight controller
+- The MAVLink message is sent in the background at the rate of 60Hz here
+
+### serialConfig()
+
+- initialises the CLI and Data UART ports and dumps the .cfg file to the AOP module
+
+### parseConfigFile()
+
+- Obtain profile and frame configuration information from .cfg file
+
+### readAndParseData68xx()
+
+- read UART messages from Data port and store in buffer
+- identify start of message by locating start of magic word (refer to link provided for UART comms)
+- if type of message is ```MMWDEMO_UART_MSG_DETECTED_POINTS```, then obtain parameters.
+- Clear the buffer of data that has already been processed
+
+### update()
+- update the parameters to be sent in ```OBSTACLE_DISTANCE_3D``` to the FC
