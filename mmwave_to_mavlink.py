@@ -66,6 +66,9 @@ def send_obstacle_distance_3D_message():
             float(DEPTH_RANGE_M[1])
         )
 
+
+#below two functions are not used, have been left in the code for future implementations
+
 def send_msg_to_gcs(text_to_be_sent):
     # MAV_SEVERITY: 0=EMERGENCY 1=ALERT 2=CRITICAL 3=ERROR, 4=WARNING, 5=NOTICE, 6=INFO, 7=DEBUG, 8=ENUM_END
     text_msg = 'D4xx: ' + text_to_be_sent
@@ -156,9 +159,9 @@ def parseConfigFile(configFileName):
         # Split the line
         splitWords = i.split(" ")
         
-        # Hard code the number of antennas, change if other configuration is used
+        # Number of RX and TX Antennas are specified according to the .cfg file
         numRxAnt = 4
-        numTxAnt = 3
+        numTxAnt = 2
         
         # Get the information about the profile configuration
         if "profileCfg" in splitWords[0]:
