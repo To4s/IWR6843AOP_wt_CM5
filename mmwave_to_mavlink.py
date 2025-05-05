@@ -109,7 +109,7 @@ sched.start()
 
 
 # Change the configuration file name
-configFileName = '/home/pi/mm_Wave_Radar_IWR6843AOPEVM/config_file.cfg'
+configFileName = 'profile_2d.cfg'
 CLIport = {}
 Dataport = {}
 byteBuffer = np.zeros(2**15,dtype = 'uint8')
@@ -271,7 +271,7 @@ def readAndParseData68xx(Dataport, configParameters):
         # Initialize the pointer index
         idX = 0
         
-        # Read the header
+        # Frame Header
         magicNumber = byteBuffer[idX:idX+8]
         idX += 8
         version = format(np.matmul(byteBuffer[idX:idX+4],word),'x')
@@ -297,7 +297,7 @@ def readAndParseData68xx(Dataport, configParameters):
             # word array to convert 4 bytes to a 32 bit number
             word = [1, 2**8, 2**16, 2**24]
 
-            # Check the header of the TLV message
+            # TLV Header
             tlv_type = np.matmul(byteBuffer[idX:idX+4],word)
             idX += 4
             tlv_length = np.matmul(byteBuffer[idX:idX+4],word)
