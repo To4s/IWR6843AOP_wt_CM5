@@ -78,7 +78,7 @@ def send_obstacle_distance_3D_message():
     for i in range(len(mavlink_x)):
         conn.mav.obstacle_distance_3d_send(
             current_time_ms,    # us Timestamp (UNIX time or time since system boot)
-            0,
+            1,
             mavutil.mavlink.MAV_FRAME_BODY_FRD,
             65535,
             float(mavlink_x[i]),
